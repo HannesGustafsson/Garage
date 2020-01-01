@@ -1,0 +1,4 @@
+﻿  Garage.cpp
+C:\Users\hanne\source\repos\Object_Oriented\Garage\Garage\Garage.cpp(40,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hanne\source\repos\Object_Oriented\Garage\Garage\Garage.cpp(442,25): warning C4018: '<': signed/unsigned mismatch
+  Garage.vcxproj -> C:\Users\hanne\source\repos\Object_Oriented\Garage\Debug\Garage.exe
