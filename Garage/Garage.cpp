@@ -5,9 +5,6 @@
 
 using namespace std;
 
-int menuChoice;
-bool garageCreated = false;
-
 // =============================================
 //COLORS LIST
 //1: Blue
@@ -32,7 +29,7 @@ void Color(int color)
 }
 
 // =============================================
-// Gets user input and returns it as a string
+// Gets user input, turns it to upper case & returns it as a string
 string GetString()
 {
 	string temp;
@@ -48,7 +45,7 @@ string GetString()
 
 
 // =============================================
-// Checks user input and controls for bad inputs
+// Checks user input and controls for bad inputs, returns int
 int GetInt()
 {
 	int temp;
@@ -466,13 +463,13 @@ public:
 		}
 		cout << "Welcome, \nBefore you get started you need to create a garage." << endl;
 		cout << "Enter 1 - 10 parking spots in your garage. \nEnter '100' to quit application." << endl << endl;
-		garageCreated = false;
 	}
 
 	// =============================================
 	// Prints types of vehicles and their number
 	void PrintVehicles()
 	{
+		// Counters for the different vehicles
 		int carC = 0;
 		int busC = 0;
 		int truckC = 0;
@@ -695,16 +692,47 @@ public:
 			Color(7);
 		}
 	}
+
+	// =============================================
+	// Searches though vector to find matching number plate and removes matching
+	void SearchForNumberPlateAndRemove(string searchInput)
+	{
+		bool found = false;
+		for (size_t i = 0; i < vehicleList.size(); i++)
+		{
+			if (vehicleList[i] != 0)
+			{
+				if (vehicleList[i]->GetNumberPlate() == searchInput)
+				{
+					delete vehicleList[i];
+					vehicleList[i] = 0;
+					found = true;
+				}
+			}
+		}
+		if (found == false)
+		{
+			Color(3);
+			cout << "No matching vehicles found." << endl;
+			Color(7);
+		}
+	}
 };
 
 
 
 int main()
 {
+	// Menu choice variable
+	int menuChoice;
+
+	// Search input variables
 	int searchInputInt;
 	string searchInput;
 
+	// Bools for the different loops
 	bool running = true;
+	bool garageCreated = false;
 	bool searchMenu = true;
 
 	cout << "Welcome, \nBefore you get started you need to create a garage." << endl;
@@ -726,14 +754,16 @@ int main()
 			while (garageCreated == true)
 			{
 				Color(15);
-				cout << "\nEnter [1]: To Add Vehicle." << endl
-				<< "Enter [2]: To Remove Vehicle." << endl
-				<< "Enter [3]: To List Parked Vehicles." << endl
-				<< "Enter [4]: To Search for Vehicles." << endl
-				<< "Enter [5]: To List Number of Vehicles of Each Type." << endl
-				<< "Enter [6]: To Destroy and Exit Current Garage, Then Create new Garage" << endl;
-				
+				cout << "\nEnter [1]: To Add Vehicle." << endl;
+				Color(12);
+				cout << "Enter [2]: To Remove Vehicle." << endl;
+				Color(15);
+				cout << "Enter [3]: To List Parked Vehicles." << endl;
+				cout << "Enter [4]: To Search for Vehicles." << endl;
+				cout << "Enter [5]: To List Number of Vehicles of Each Type." << endl;
+				cout << "Enter [6]: To Destroy and Exit Current Garage, Then Create new Garage" << endl;
 				Color(7);
+
 				menuChoice = GetInt();
 				switch (menuChoice)
 				{
@@ -780,12 +810,15 @@ int main()
 					while (searchMenu == true)
 					{
 						Color(15);
-						cout << "\nEnter [1]: To Find all with Chosen Color." << endl
-						<< "Enter [2]: To Find all with Chosen Number of Wheels." << endl
-						<< "Enter [3]: To Find all by Chosen Manufacturer." << endl
-						<< "Enter [4]: To Find all with Chosen Number of Seats." << endl
-						<< "Enter [5]: To Find specific vehicle." << endl
-						<< "Enter [6]: Return to Main Menu." << endl;
+						cout << "\nEnter [1]: To Find all with Chosen Color." << endl;
+						cout << "Enter [2]: To Find all with Chosen Number of Wheels." << endl;
+						cout << "Enter [3]: To Find all by Chosen Manufacturer." << endl;
+						cout << "Enter [4]: To Find all with Chosen Number of Seats." << endl;
+						cout << "Enter [5]: To Find specific vehicle." << endl;
+						Color(12);
+						cout << "Enter [6]: To Find & Remove Specific Vehicle" << endl;
+						Color(15);
+						cout << "Enter [7]: Return to Main Menu." << endl;
 						Color(7);
 						menuChoice = GetInt();
 						switch (menuChoice)
@@ -821,6 +854,12 @@ int main()
 							break;
 
 						case 6:
+							cout << "Registration plate: ";
+							searchInput = GetString();
+							garage.SearchForNumberPlateAndRemove(searchInput);
+							break;
+
+						case 7:
 							searchMenu = false;
 							break;
 
@@ -837,6 +876,7 @@ int main()
 
 				case 6:
 					garage.DestroyAndExit();
+					garageCreated = false;
 					break;
 
 				default:
