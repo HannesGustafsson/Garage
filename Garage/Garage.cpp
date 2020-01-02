@@ -37,6 +37,7 @@ string GetString()
 {
 	string temp;
 	cin >> temp;
+
 	for (int i = 0; i < temp.size(); i++)
 	{
 		temp[i] = toupper(temp[i]);
@@ -130,7 +131,7 @@ public:
 // =====================< CLASS >========================
 // Bus class
 // Contains Bus-specific information
-// (Number Plate(string a), Manufacturer(string c), Color(string b), Seat Count(int d), Double Decker(bool))
+// (Number Plate(string a), Manufacturer(string c), Color(string b), Seat Count(int d), Double Decker(bool))   
 class Bus : public Vehicle
 {
 protected:
@@ -463,8 +464,8 @@ public:
 				vehicleList[i] = 0;
 			}
 		}
-		cout << "Garage destroyed." << endl << endl;
-		cout << "Enter 1 - 10 parking spots in your garage. \nEnter 0 to quit application." << endl << endl;
+		cout << "Welcome, \nBefore you get started you need to create a garage." << endl;
+		cout << "Enter 1 - 10 parking spots in your garage. \nEnter '100' to quit application." << endl << endl;
 		garageCreated = false;
 	}
 
@@ -715,7 +716,7 @@ int main()
 		cout << "Number of parking spots: ";
 		int parkingSpots = GetInt();
 		
-		if (parkingSpots < 101 && parkingSpots > 0)
+		if (parkingSpots <= 10 && parkingSpots > 0)
 		{
 			Garage garage(parkingSpots);
 			garageCreated = true;
@@ -725,22 +726,22 @@ int main()
 			while (garageCreated == true)
 			{
 				Color(15);
-				cout << "\nEnter [1]: To Add Vehicle." << endl;
-				cout << "Enter [2]: To Remove Vehicle." << endl;
-				cout << "Enter [3]: To List Parked Vehicles." << endl;
-				cout << "Enter [4]: To Search for Vehicles." << endl;
-				cout << "Enter [5]: To List Number of Vehicles of Each Type" << endl;
-				cout << "Enter [6]: To Destroy and Exit Garage" << endl;
+				cout << "\nEnter [1]: To Add Vehicle." << endl
+				<< "Enter [2]: To Remove Vehicle." << endl
+				<< "Enter [3]: To List Parked Vehicles." << endl
+				<< "Enter [4]: To Search for Vehicles." << endl
+				<< "Enter [5]: To List Number of Vehicles of Each Type" << endl
+				<< "Enter [6]: To Destroy and Exit Garage" << endl;
 				Color(7);
 				menuChoice = GetInt();
 				switch (menuChoice)
 				{
 				case 1:
-					cout << "\nEnter [1]: To Add Car." << endl;
-					cout << "Enter [2]: To Add Bus." << endl;
-					cout << "Enter [3]: To Add Truck." << endl;
-					cout << "Enter [4]: To Add Motorcycle." << endl;
-					cout << "Enter [5]: To Add Bike." << endl;
+					cout << "\nEnter [1]: To Add Car." << endl
+					<< "Enter [2]: To Add Bus." << endl
+					<< "Enter [3]: To Add Truck." << endl
+					<< "Enter [4]: To Add Motorcycle." << endl
+					<< "Enter [5]: To Add Bike." << endl;
 
 					menuChoice = GetInt();
 					switch (menuChoice)
@@ -778,12 +779,12 @@ int main()
 					while (searchMenu == true)
 					{
 						Color(15);
-						cout << "\nEnter [1]: To Find all with Chosen Color." << endl;
-						cout << "Enter [2]: To Find all with Chosen Number of Wheels." << endl;
-						cout << "Enter [3]: To Find all by Chosen Manufacturer." << endl;
-						cout << "Enter [4]: To Find all with Chosen Number of Seats." << endl;
-						cout << "Enter [5]: To Find specific vehicle." << endl;
-						cout << "Enter [6]: Return to Main Menu." << endl;
+						cout << "\nEnter [1]: To Find all with Chosen Color." << endl
+						<< "Enter [2]: To Find all with Chosen Number of Wheels." << endl
+						<< "Enter [3]: To Find all by Chosen Manufacturer." << endl
+						<< "Enter [4]: To Find all with Chosen Number of Seats." << endl
+						<< "Enter [5]: To Find specific vehicle." << endl
+						<< "Enter [6]: Return to Main Menu." << endl;
 						Color(7);
 						menuChoice = GetInt();
 						switch (menuChoice)
