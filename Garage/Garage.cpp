@@ -730,8 +730,9 @@ int main()
 				<< "Enter [2]: To Remove Vehicle." << endl
 				<< "Enter [3]: To List Parked Vehicles." << endl
 				<< "Enter [4]: To Search for Vehicles." << endl
-				<< "Enter [5]: To List Number of Vehicles of Each Type" << endl
-				<< "Enter [6]: To Destroy and Exit Garage" << endl;
+				<< "Enter [5]: To List Number of Vehicles of Each Type." << endl
+				<< "Enter [6]: To Destroy and Exit Current Garage, Then Create new Garage" << endl;
+				
 				Color(7);
 				menuChoice = GetInt();
 				switch (menuChoice)
